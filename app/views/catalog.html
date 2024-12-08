@@ -1,0 +1,65 @@
+<nav class="navbar">
+  <div class="navbar-left">
+    <h2>Your Own Shopping Cart</h2>
+  </div>
+  <div class="navbar-right">
+    <input 
+      type="text" 
+      ng-model="searchQuery" 
+      ng-change="searchProduct()" 
+      placeholder="Search products..." 
+      class="search-bar" 
+    />
+    <button class="btn view-cart-btn" ng-click="toggleCartView()">View Cart</button>
+  </div>
+</nav>
+
+
+<!-- Product Catalog -->
+<div class="container">
+  <div class="product-grid">
+    <div class="product-card" ng-repeat="item in filteredCatalog">
+      <img ng-src="{{ item.image }}" alt="{{ item.name }}" class="product-image">
+      <h3>{{ item.name }}</h3>
+      <p class="product-description">{{ item.description }}</p>
+      <p><strong>Price:</strong> ${{ item.price.toFixed(2) }}</p>
+      <p><strong>Product ID:</strong> {{ item.id }}</p> <!-- Display product ID -->
+      <p><strong>Stock:</strong> {{ item.quantityInStock }} available</p> <!-- Display stock -->
+
+      <button class="btn" ng-click="addToCart(item)">Add to Cart</button>
+      <p ng-if="item.message" class="added-message">{{ item.message }}</p> <!-- Display add to cart message -->
+    </div>
+  </div>
+</div>
+
+
+<!-- Cart Modal -->
+<div class="cart-modal" ng-if="showCart" ng-class="{'open': showCart}">
+  <div class="cart-modal-content">
+    <h2>Your Cart</h2>
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Total</th>
+        <th>Actions</th>
+      </tr>
+      <tr ng-repeat="item in cart">
+        <td>{{ item.name }}</td>
+        <td>${{ item.price.toFixed(2) }}</td>
+        <td>
+          <input type="number" ng-model="item.quantity" ng-change="updateQuantity(item, item.quantity)" min="1">
+        </td>
+        <td>${{ (item.price * item.quantity).toFixed(2) }}</td>
+        <td>
+          <button class="remove-btn" ng-click="removeFromCart(item)">Remove</button>
+        </td>
+      </tr>
+    </table>
+    <div class="total-cart">
+      <strong>Total: ${{ getTotalCart() }}</strong>
+    </div>
+    <button class="btn close-cart-btn" ng-click="toggleCartView()">Close Cart</button>
+  </div>
+</div>

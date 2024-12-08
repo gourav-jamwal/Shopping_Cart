@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shopping Cart</title>
+  <link rel="stylesheet" href="styles/style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-route.min.js"></script>
+  <script src="app/app.js"></script>
+  <script src="app/controllers/cartController.js"></script>
+  <script src="app/services/cartService.js"></script>
+</head>
+<body ng-app="shoppingCartApp">
+  
+  <div ng-view></div>
+  <div ng-controller="CartController">
+    <!-- <button class="btn view-cart-btn" ng-click="toggleCartView()">View Cart</button> -->
+    <div ng-include="'views/cart.html'"></div>
+  </div>
+  <!-- Loading Screen -->
+  <div id="loading-screen">
+  <div class="loading-message">
+    <p>Page is being refreshed...</p>
+    <div class="spinner"></div>
+    </div>
+  </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const loadingScreen = document.getElementById("loading-screen");
+
+      // Hide the loading screen after a short delay
+      setTimeout(() => {
+        loadingScreen.classList.add("hidden");
+      }, 500); // Adjust delay as needed
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+<div class="item-details">
+    <h1>{{ item.name }}</h1>
+    <img ng-src="{{ item.image }}" alt="{{ item.name }}" class="item-image">
+    <p>{{ item.description }}</p>
+    <p><strong>Price:</strong> ${{ item.price }}</p>
+    <button class="btn" ng-click="addToCart(item)">Add to Cart</button>
+  </div>
+  
