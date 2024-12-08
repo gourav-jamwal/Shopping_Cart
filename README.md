@@ -55,7 +55,7 @@ This project is a simple Shopping Cart web application implemented using **Angul
 The application is deployed on Netlify. Use the following URL to access it:
 
 ```
-https://Shopping_Cart.netlify.app
+https://shoppingcartcrud.netlify.app/
 ```
 
 
